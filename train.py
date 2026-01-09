@@ -8,6 +8,7 @@ from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.ensemble import RandomForestRegressor
 
 # Create output folder
 os.makedirs("output", exist_ok=True)
@@ -23,23 +24,11 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-# Select experiment (EDIT HERE FOR EACH RUN)
+# Experiment 1: Linear Regression
 pipeline = Pipeline([
     ("scaler", StandardScaler()),
     ("model", LinearRegression())
 ])
-
-# For Ridge
-# pipeline = Pipeline([
-#     ("scaler", StandardScaler()),
-#     ("model", Ridge(alpha=1.0))
-# ])
-
-# For Lasso
-# pipeline = Pipeline([
-#     ("scaler", StandardScaler()),
-#     ("model", Lasso(alpha=0.01))
-# ])
 
 # Train model
 pipeline.fit(X_train, y_train)
